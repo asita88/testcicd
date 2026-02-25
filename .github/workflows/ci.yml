@@ -5,6 +5,13 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      date:
+        description: '日期 YYYYMMDD'
+        required: false
+      time:
+        description: '时间 HHMMSS'
+        required: false
 
 env:
   GO_VERSION: '1.23'
@@ -47,11 +54,15 @@ jobs:
 
       - name: Generate version
         id: version
+        env:
+          INPUT_DATE: ${{ github.event.inputs.date }}
+          INPUT_TIME: ${{ github.event.inputs.time }}
+          BRANCH: ${{ github.ref_name }}
         run: |
-          DATE=$(date +%Y%m%d)
-          TIME=$(date +%H%M%S)
+          DATE="${INPUT_DATE:-$(date +%Y%m%d)}"
+          TIME="${INPUT_TIME:-$(date +%H%M%S)}"
           SHORT_SHA=${GITHUB_SHA::7}
-          VERSION="v1.0.0-${DATE}-${TIME}-${SHORT_SHA}"
+          VERSION="${BRANCH}-${DATE}-${TIME}-${SHORT_SHA}"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Create Release
