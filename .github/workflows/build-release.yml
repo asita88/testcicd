@@ -1,6 +1,6 @@
 jobs:
   build:
-    uses: https://github.com/asita88/ci-templates/.github/workflows/build-release-go.yml@main
+    uses: asita88/ci-templates/.github/workflows/build-release-go.yml@main
     with:
       app_name: testcicd
       go_version: '1.23'
