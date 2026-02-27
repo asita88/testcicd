@@ -13,6 +13,6 @@ jobs:
     uses: asita88/ci-templates/.github/workflows/build-release-go.yml@main
     with:
       app_name: testcicd
-      go_version: '1.25'
+      go_version: '1.23'
       build_script: scripts/build.sh
     secrets: inherit
