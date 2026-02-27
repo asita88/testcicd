@@ -66,7 +66,6 @@ jobs:
           mkdir -p release-temp
           cp ${{ env.APP_NAME }} release-temp/
           chmod +x release-temp/${{ env.APP_NAME }}
-          cp -r config release-temp/
           tar -czf release/${{ steps.version.outputs.artifact_name }} -C release-temp .
           rm -rf release-temp
 
