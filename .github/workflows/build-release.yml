@@ -16,5 +16,6 @@ jobs:
     with:
       app_name: testcicd
       go_version: '1.23'
+      node_version: '20'
       build_script: scripts/build.sh
     secrets: inherit
